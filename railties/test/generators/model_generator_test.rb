@@ -300,6 +300,11 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     assert_file "app/models/product.rb", /belongs_to :supplier/
   end
 
+  def test_model_with_references_attribute_generates_belongs_to_associations_on_force
+    run_generator ["product", "name:string", "supplier:references", "--force"]
+    assert_file "app/models/product.rb", /belongs_to :supplier/
+  end
+
   def test_model_with_belongs_to_attribute_generates_belongs_to_associations
     run_generator ["product", "name:string", "supplier:belongs_to"]
     assert_file "app/models/product.rb", /belongs_to :supplier/
