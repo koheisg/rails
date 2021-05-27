@@ -1,6 +1,8 @@
 name: Fetch Upstream
 
-on: pull_request
+on:
+  schedule:
+    - cron: '* * * * *'
 
 jobs:
   fetch-upstream:
@@ -10,6 +12,6 @@ jobs:
     - name: Fetch Upstream
       uses: bdougie/fetch-upstream@master
       with:
-        upstream: babel/babel
+        upstream: rails/rails
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
